@@ -1,0 +1,159 @@
+app-id: com.xiaoyaocz.simplelive
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+rename-icon: simple_live_app
+rename-desktop-file: simple_live_app.desktop
+command: simple_live_app
+finish-args:
+  - '--share=ipc'
+  - '--socket=fallback-x11'
+  - '--socket=wayland'
+  - '--socket=pulseaudio'
+  - '--share=network'
+  - '--device=dri'
+  - '--talk-name=org.freedesktop.ScreenSaver'
+  - '--env=LC_NUMERIC=C'
+cleanup:
+  - '*.a'
+  - '*.la'
+  - /include
+  - /lib/cmake
+  - /lib/debug
+  - /lib/pkgconfig
+  - /man
+  - /share/man
+  - /share/gtk-doc
+add-extensions:
+  org.freedesktop.Platform.ffmpeg-full:
+    directory: lib/ffmpeg
+    version: '23.08'
+    add-ld-path: .
+modules:
+  - name: libmpv
+    buildsystem: meson
+    config-opts:
+      - -Dlibmpv=true
+      - -Dlua=disabled
+      - -Ddebug=false
+      - -Dbuild-date=false
+      - -Dcplayer=false
+      - -Dmanpage-build=disabled
+    sources:
+      - type: archive
+        url: https://github.com/mpv-player/mpv/archive/refs/tags/v0.37.0.tar.gz
+        sha256: 1d2d4adbaf048a2fa6ee134575032c4b2dad9a7efafd5b3e69b88db935afaddf
+        x-checker-data:
+          type: anitya
+          project-id: 5348
+          stable-only: true
+          url-template: https://github.com/mpv-player/mpv/archive/refs/tags/v$version.tar.gz
+    modules:
+
+      - name: libXpresent
+        buildsystem: autotools
+        sources:
+          - type: archive
+            url: https://xorg.freedesktop.org/archive/individual/lib/libXpresent-1.0.1.tar.xz
+            sha256: b964df9e5a066daa5e08d2dc82692c57ca27d00b8cc257e8e960c9f1cf26231b
+            x-checker-data:
+              type: anitya
+              project-id: 17166
+              stable-only: true
+              url-template: https://xorg.freedesktop.org/archive/individual/lib/libXpresent-$version.tar.xz
+
+      - name: nv-codec-headers
+        cleanup:
+          - '*'
+        no-autogen: true
+        make-install-args:
+          - PREFIX=/app
+        sources:
+          - type: archive
+            url: https://github.com/FFmpeg/nv-codec-headers/archive/refs/tags/n12.1.14.0.tar.gz
+            sha256: 2fefaa227d2a3b4170797796425a59d1dd2ed5fd231db9b4244468ba327acd0b
+            x-checker-data:
+              type: anitya
+              project-id: 223796
+              stable-only: true
+              url-template: https://github.com/FFmpeg/nv-codec-headers/archive/refs/tags/n$version.tar.gz
+
+      - name: libass
+        config-opts:
+          - --disable-static
+        sources:
+          - type: archive
+            url: https://github.com/libass/libass/releases/download/0.17.1/libass-0.17.1.tar.gz
+            sha256: d653be97198a0543c69111122173c41a99e0b91426f9e17f06a858982c2fb03d
+            x-checker-data:
+              type: anitya
+              project-id: 1560
+              stable-only: true
+              url-template: https://github.com/libass/libass/releases/download/$version/libass-$version.tar.gz
+
+      - name: uchardet
+        buildsystem: cmake-ninja
+        config-opts:
+          - -DCMAKE_BUILD_TYPE=Release
+          - -DBUILD_STATIC=0
+        sources:
+          - type: archive
+            url: https://www.freedesktop.org/software/uchardet/releases/uchardet-0.0.8.tar.xz
+            sha256: e97a60cfc00a1c147a674b097bb1422abd9fa78a2d9ce3f3fdcc2e78a34ac5f0
+            x-checker-data:
+              type: anitya
+              project-id: 9265
+              stable-only: true
+              url-template: https://www.freedesktop.org/software/uchardet/releases/uchardet-$version.tar.xz
+
+      - name: libplacebo
+        buildsystem: meson
+        config-opts:
+          - -Dglslang=disabled
+          - -Dd3d11=disabled
+          - -Ddemos=false
+        sources:
+          - type: git
+            url: https://github.com/haasn/libplacebo.git
+            commit: 64c1954570f1cd57f8570a57e51fb0249b57bb90
+            tag: v6.338.2
+            x-checker-data:
+              type: git
+              tag-pattern: ^v([\d.]+)$
+
+  - name: simple_live
+    buildsystem: simple
+    build-options:
+      no-debuginfo: true
+    build-commands:
+      - bsdtar --to-stdout -xf simple_live_app.deb data.* | bsdtar -xf -
+      - rm -r usr/share/icons
+      - mv usr/share/simple_live_app /app/
+      - cp -a usr/share /app/
+      - desktop-file-edit --set-name="Simple Live" --set-key="Categories" --set-value="AudioVideo;Audio;Video;Network;" --remove-key="Version" /app/share/applications/simple_live_app.desktop
+      - chmod +x /app/simple_live_app/simple_live_app
+      - install -Dm755 simple_live_app.sh /app/bin/simple_live_app
+      - install -Dm644 simple_live_app.png -t /app/share/icons/hicolor/512x512/apps
+      - install -Dm644 com.xiaoyaocz.simplelive.metainfo.xml -t /app/share/metainfo
+      - ln -s libmpv.so.2 /app/lib/libmpv.so.1
+      - mkdir -p /app/lib/ffmpeg
+    sources:
+      - type: file
+        url: https://github.com/xiaoyaocz/dart_simple_live/releases/download/v1.4.9/simple_live_app-1.4.9%2B10409-linux.deb
+        dest-filename: simple_live_app.deb
+        sha256: 1493bdf472512deb221e64e769a90030532528aa927270817d54fd1afb31edef
+
+      - type: file
+        url: https://raw.githubusercontent.com/xiaoyaocz/dart_simple_live/desktop/simple_live_app/assets/images/logo.png
+        dest-filename: simple_live_app.png
+        sha256: 9a748937746a91370d97386f194f6bc285e32637595a769c0c33ea213508a0cc
+
+      - type: file
+        path: com.xiaoyaocz.simplelive.metainfo.xml
+
+      - type: script
+        commands:
+          - export TMPDIR="$XDG_RUNTIME_DIR/app/$FLATPAK_ID"
+          - export LD_LIBRARY_PATH=/app/lib 
+          - exec /app/simple_live_app/simple_live_app "$@"
+        dest-filename: simple_live_app.sh

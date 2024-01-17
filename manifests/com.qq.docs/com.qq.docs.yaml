@@ -1,0 +1,63 @@
+app-id: com.qq.docs
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+base: org.electronjs.Electron2.BaseApp
+base-version: '23.08'
+separate-locales: false
+rename-icon: tdappdesktop
+rename-desktop-file: tdappdesktop.desktop
+command: tdappdesktop
+
+finish-args:
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --device=dri
+  - --share=network
+  - --filesystem=xdg-download
+
+cleanup:
+  - '*.a'
+  - '*.la'
+  - /include
+  - /lib/cmake
+  - /lib/debug
+  - /lib/pkgconfig
+  - /man
+  - /share/man
+  - /share/gtk-doc
+
+modules:
+  - name: docs
+    buildsystem: simple
+    build-options:
+      no-debuginfo: true
+    build-commands:
+      - bsdtar --to-stdout -xf docs.deb data.* | bsdtar -xf -
+      - rm -r usr/share/doc
+      - mv opt/腾讯文档 $FLATPAK_DEST/docs
+      - cp -a usr/share $FLATPAK_DEST/
+      - desktop-file-edit --set-key="Exec" --set-value="tdappdesktop %U" $FLATPAK_DEST/share/applications/tdappdesktop.desktop
+      - install -Dm644 com.qq.docs.metainfo.xml -t /app/share/metainfo
+      - install -Dm755 tdappdesktop.sh /app/bin/tdappdesktop
+    sources:
+      - type: file
+        dest-filename: docs.deb
+        only-arches:
+          - aarch64
+        url: https://docs.qq.com/api/package/get?channel_id=30001&version_id=latest&package_name=TencentDocs-arm64.deb
+        sha256: f712078f73b4fe06897d60d7aa5ca6b6922ee282f2a8c572c79fb7179391f707
+      - type: file
+        dest-filename: docs.deb
+        only-arches:
+          - x86_64
+        url: https://docs.qq.com/api/package/get?channel_id=30001&version_id=latest&package_name=TencentDocs-x64.deb
+        sha256: 45ca5039bc8daf147e181137517a2388fc65e39c1c37a25e6f263ce9fc158541
+      - type: file
+        path: com.qq.docs.metainfo.xml
+      - type: script
+        dest-filename: tdappdesktop.sh
+        commands:
+          - export TMPDIR=$XDG_RUNTIME_DIR/app/$FLATPAK_ID
+          - exec zypak-wrapper.sh /app/docs/tdappdesktop --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime "$@"

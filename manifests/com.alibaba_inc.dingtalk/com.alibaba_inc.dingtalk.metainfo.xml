@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>com.alibaba_inc.dingtalk</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary=https://terms.alicdn.com/legal-agreement/terms/suit_bu1_dingtalk/suit_bu1_dingtalk202010200940_84493.html</project_license>
+  <name>DingTalk</name>
+  <name xml:lang="zh-cn">钉钉</name>
+  <developer>DingTalk</developer>
+  <content_rating type="oars-1.1">
+    <content_attribute id="social-chat">intense</content_attribute>
+    <content_attribute id="social-info">intense</content_attribute>
+    <content_attribute id="social-audio">intense</content_attribute>
+    <content_attribute id="social-location">intense</content_attribute>
+    <content_attribute id="social-contacts">intense</content_attribute>
+    <content_attribute id="money-purchasing">intense</content_attribute>
+    <content_attribute id="money-advertising">moderate</content_attribute>
+  </content_rating>
+
+  <launchable type="desktop-id">com.alibaba_inc.dingtalk.desktop</launchable>
+  <summary>Online meeting and learning</summary>
+  <description>
+    <p>DingTalk is an intelligent working platform created by Alibaba Group to support tens of millions of enterprises to achieve higher working efficiency with the new digitalized working method.</p>
+    <ul>
+      <li>Video Meetings: Clear, stable and smooth video conference system which supports up to 302 participants stay in sync. Anytime and anywhere, participants are able to have easy access to meetings via mobile phones, pads, computers.</li>
+      <li>Online Class: Online teaching system enables teachers and students to have classes "face to face" even at home, during the period of school closure.</li>
+      <li>Read/Unread Status: Private chat and group chat mode are both available on DingTalk Lite. And you can check if the message you sent has been read or not, which makes the communication more efficient.</li>
+      <li>Integrated Address Book: The function of importing company organization chart to DingTalk Lite helps realize a highly efficient integrated management. Employees can talk and cooperate safely and smoothly anytime and anywhere, which greatly improves the efficiency of communication and collaboration.</li>
+      <li>Calendar: With the deep integration of calendar management and instant communication system, colleagues are able to align their schedules, and create meetings in the shared calendar.</li>
+      <li>Ding Fitness: Allow access to HealthKit health data so your colleagues can view and compete with your daily steps.</li>
+    </ul>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Homepage</caption>
+      <image>https://img.alicdn.com/imgextra/i1/O1CN01NdQboY24qwiORWcdj_!!6000000007443-2-tps-1556-956.png</image>
+    </screenshot>
+  </screenshots>
+  <url type="homepage">https://www.dingtalk.com/</url>
+  <releases>
+    <release version="7.1.0.31120" date="2023-09-19" />
+  </releases>
+</component>
