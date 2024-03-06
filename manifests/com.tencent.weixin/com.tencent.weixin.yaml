@@ -74,6 +74,8 @@ modules:
       - mv opt/wechat-beta /app/wechat
       - cp -a license /app/license
       - mkdir -p /app/lib/ffmpeg
+      - desktop-file-edit --set-key="Name" --set-value="WeChat" /app/share/applications/wechat.desktop
+      - desktop-file-edit --set-key="Name[zh_CN]" --set-value="微信" /app/share/applications/wechat.desktop
       - desktop-file-edit --set-key="Exec" --set-value="wechat %U" /app/share/applications/wechat.desktop
       - desktop-file-edit --set-key="Icon" --set-value="com.tencent.weixin" /app/share/applications/wechat.desktop
       - install -Dm644 /app/wechat/icons/wechat.png -t /app/share/icons/hicolor/256x256/apps/
