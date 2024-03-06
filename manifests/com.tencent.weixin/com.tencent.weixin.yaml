@@ -37,6 +37,8 @@ modules:
 
   - modules/libbz2-1.0.8.json
 
+  - modules/openssl-1.1.1w.yaml
+
   - name: libnotify
     buildsystem: meson
     config-opts:
