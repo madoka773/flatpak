@@ -11,8 +11,7 @@ command: tdappdesktop
 
 finish-args:
   - --share=ipc
-  - --socket=wayland
-  - --socket=fallback-x11
+  - --socket=x11
   - --device=dri
   - --share=network
   - --filesystem=xdg-download
@@ -60,4 +59,4 @@ modules:
         dest-filename: tdappdesktop.sh
         commands:
           - export TMPDIR=$XDG_RUNTIME_DIR/app/$FLATPAK_ID
-          - exec zypak-wrapper.sh /app/docs/tdappdesktop --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime "$@"
+          - exec zypak-wrapper.sh /app/docs/tdappdesktop "$@"

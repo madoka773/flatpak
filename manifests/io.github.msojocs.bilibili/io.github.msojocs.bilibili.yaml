@@ -9,8 +9,7 @@ command: bilibili
 
 finish-args:
   - --share=ipc
-  - --socket=wayland
-  - --socket=fallback-x11
+  - --socket=x11
   - --socket=pulseaudio
   - --device=dri
   - --share=network
@@ -73,4 +72,4 @@ modules:
           - export ELECTRON_IS_DEV=0
           - export ELECTRON_FORCE_IS_PACKAGED=true
           - export NODE_ENV=production
-          - exec "/app/bilibili/electron/electron" "/app/bilibili/app/app.asar" --no-sandbox --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime "$@"
+          - exec "/app/bilibili/electron/electron" "/app/bilibili/app/app.asar" --no-sandbox "$@"
