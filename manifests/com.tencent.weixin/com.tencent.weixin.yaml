@@ -16,6 +16,7 @@ finish-args:
   - --talk-name=org.kde.StatusNotifierWatcher
   - --persist=xwechat_files
   - --filesystem=xdg-download
+
 cleanup:
   - '*.a'
   - '*.la'
