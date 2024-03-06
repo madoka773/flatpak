@@ -1,0 +1,1 @@
+# 你需要先把 `license/usr/lib/license/libuosdevicea.so` 放到 `~/.local/share/flatpak/runtime/org.freedesktop.Platform/x86_64/最新的版本号/active/files/lib/license/` 或者 `/var/lib/flatpak/runtime/org.freedesktop.Platform/x86_64/最新的版本号/active/files/lib/license/`
