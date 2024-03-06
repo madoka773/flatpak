@@ -1,0 +1,113 @@
+app-id: com.tencent.weixin
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+separate-locales: false
+rename-icon: wechat
+rename-desktop-file: wechat.desktop
+command: wechat
+
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=pulseaudio
+  - --device=dri
+  - --share=network
+  - --talk-name=org.kde.StatusNotifierWatcher
+
+cleanup:
+  - '*.a'
+  - '*.la'
+  - /include
+  - /lib/cmake
+  - /lib/debug
+  - /lib/pkgconfig
+  - /man
+  - /share/man
+  - /share/gtk-doc
+
+add-extensions:
+  org.freedesktop.Platform.ffmpeg-full:
+    directory: lib/ffmpeg
+    version: '23.08'
+    add-ld-path: .
+
+modules:
+  - shared-modules/libappindicator/libappindicator-gtk3-12.10.json
+
+  - modules/libbz2-1.0.8.json
+
+  - name: libnotify
+    buildsystem: meson
+    config-opts:
+      - -Dtests=false
+      - -Dintrospection=disabled
+      - -Dman=false
+      - -Dgtk_doc=false
+      - -Ddocbook_docs=disabled
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/libnotify/0.8/libnotify-0.8.3.tar.xz
+        sha256: ee8f3ef946156ad3406fdf45feedbdcd932dbd211ab4f16f75eba4f36fb2f6c0
+        x-checker-data:
+          type: gnome
+          name: libnotify
+          stable-only: true
+      - type: archive
+        url: https://download.gnome.org/sources/gnome-common/3.18/gnome-common-3.18.0.tar.xz
+        sha256: 22569e370ae755e04527b76328befc4c73b62bfd4a572499fde116b8318af8cf
+        x-checker-data:
+          type: gnome
+          name: gnome-common
+          stable-only: true
+
+  - name: wechat
+    buildsystem: simple
+    build-options:
+      no-debuginfo: true
+    build-commands:
+      - bsdtar --to-stdout -xf wechat.deb data.* | bsdtar -xf -
+      - rm -r usr/share/doc
+      - cp -a usr/share /app/
+      - mv opt/wechat-beta /app/wechat
+      - cp -a license /app/license
+      - mkdir -p /app/lib/ffmpeg
+      - desktop-file-edit --set-key="Exec" --set-value="wechat %U" /app/share/applications/wechat.desktop
+      - desktop-file-edit --set-key="Icon" --set-value="com.tencent.weixin" /app/share/applications/wechat.desktop
+      - install -Dm644 /app/wechat/icons/wechat.png -t /app/share/icons/hicolor/256x256/apps/
+      - install -Dm644 com.tencent.weixin.metainfo.xml -t /app/share/metainfo
+      - install -Dm755 wechat.sh /app/bin/wechat
+    sources:
+      - type: script
+        dest-filename: wechat.sh
+        commands:
+          - set -e
+          - mkdir -p /var/lib
+          - ln -fsn /app/license/{os,lsb}-release -t /etc
+          - ln -fsn /app/license/var/uos* -t /var
+          - ln -fsn /app/license/var/lib/uos* -t /var/lib
+          - export TMPDIR=$XDG_RUNTIME_DIR/app/$FLATPAK_ID
+          - export QT_QPA_PLATFORM=xcb
+          - exec /app/wechat/wechat
+
+      - type: dir
+        path: license
+        dest: license
+
+      - type: file
+        path: com.tencent.weixin.metainfo.xml
+
+      - type: file
+        dest-filename: wechat.deb
+        only-arches:
+          - x86_64
+        url: https://cdn4.cnxclm.com/uploads/2024/03/05/3VDyAc0x_wechat-beta_1.0.0.145_amd64.deb?attname=wechat-beta_1.0.0.145_amd64.deb
+        sha256: fbb1ada447c2595a4ce568eb79852555a724158836c213c7c2ec366164976ebe
+
+      - type: file
+        dest-filename: wechat.deb
+        only-arches: 
+          - aarch64
+        url: https://cdn4.cnxclm.com/uploads/2024/03/05/NKX87bHT_wechat-beta_1.0.0.150_arm64.deb?attname=wechat-beta_1.0.0.150_arm64.deb
+        sha256: 0b8a50f194582a0e659075fadc0632feeb303bde80060b210e05cd8427583071
+
