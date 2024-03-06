@@ -14,7 +14,8 @@ finish-args:
   - --device=dri
   - --share=network
   - --talk-name=org.kde.StatusNotifierWatcher
-
+  - --persist=xwechat_files
+  - --filesystem=xdg-download
 cleanup:
   - '*.a'
   - '*.la'
