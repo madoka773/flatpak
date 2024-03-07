@@ -6,7 +6,7 @@
 
 ## Build
 
-`flatpak-builder --repo=repo --force-clean build-dir manifests/**/<app-id>.yaml`
+`flatpak run org.flatpak.Builder --repo=repo --force-clean build-dir manifests/**/<app-id>.yaml`
 
 ## Add repo
 
