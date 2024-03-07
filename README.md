@@ -4,7 +4,7 @@
 
 `flatpak install org.flatpak.Builder`
 
-## Clone The Repo
+## Clone
 
 `git clone https://github.com/madoka773/flatpak.git --recursive`
 
