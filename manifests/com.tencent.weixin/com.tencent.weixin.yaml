@@ -74,7 +74,7 @@ modules:
       - rm -r usr/share/doc
       - cp -a usr/share /app/
       - mv opt/wechat-beta /app/wechat
-      - cp -a license /app/license
+      - cp -a license /app/
       - mkdir -p /app/lib/ffmpeg
       - desktop-file-edit --set-key="Name" --set-value="WeChat" /app/share/applications/wechat.desktop
       - desktop-file-edit --set-key="Name[zh_CN]" --set-value="微信" /app/share/applications/wechat.desktop
