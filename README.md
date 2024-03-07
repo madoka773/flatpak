@@ -1,14 +1,18 @@
-# How to build
+# How To Build
 
 ## Install Flatpak Builder
 
 `flatpak install org.flatpak.Builder`
 
+## Clone The Repo
+
+`git clone https://github.com/madoka773/flatpak.git --recursive`
+
 ## Build
 
-`flatpak run org.flatpak.Builder --repo=repo --force-clean build-dir manifests/**/<app-id>.yaml`
+`flatpak run org.flatpak.Builder --repo=repo --force-clean build-dir manifests/<app-id>/<app-id>.yaml`
 
-## Add repo
+## Add Repo
 
 `flatpak --user remote-add --no-gpg-verify local repo`
 
