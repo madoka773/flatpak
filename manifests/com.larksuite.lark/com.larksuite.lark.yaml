@@ -41,15 +41,11 @@ modules:
       - install -Dm644 -t /app/share/applications/ com.larksuite.lark.desktop
       - install -Dm644 -t /app/share/metainfo/ com.larksuite.lark.metainfo.xml
       - install -Dm755 -t /app/bin/ apply_extra
-      - install -Dm755 -t /app/bin/ vulcan-launcher.sh
     sources:
       - type: script
         commands:
           - bsdtar --to-stdout -xf lark.deb data.* | bsdtar -xf -
           - mv opt/bytedance/lark lark
-          # rename builtin browser
-          - mv lark/vulcan/vulcan lark/vulcan/vulcan-original
-          - cp -a /app/bin/vulcan-launcher.sh lark/vulcan/vulcan
           # clean up
           - rm -r opt usr lark.deb
         dest-filename: apply_extra
@@ -77,8 +73,6 @@ modules:
         filename: lark.deb
         size: 292800012
 
-      - type: file
-        path: vulcan-launcher.sh
       - type: file
         path: com.larksuite.lark.svg
       - type: file

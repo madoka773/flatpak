@@ -41,15 +41,11 @@ modules:
       - install -Dm644 -t /app/share/applications/ cn.feishu.feishu.desktop
       - install -Dm644 -t /app/share/metainfo/ cn.feishu.feishu.metainfo.xml
       - install -Dm755 -t /app/bin/ apply_extra
-      - install -Dm755 -t /app/bin/ vulcan-launcher.sh
     sources:
       - type: script
         commands:
           - bsdtar --to-stdout -xf feishu.deb data.* | bsdtar -xf -
           - mv opt/bytedance/feishu feishu
-          # rename builtin browser
-          - mv feishu/vulcan/vulcan feishu/vulcan/vulcan-original
-          - cp -a /app/bin/vulcan-launcher.sh feishu/vulcan/vulcan
           # clean up
           - rm -r opt usr feishu.deb
         dest-filename: apply_extra
@@ -77,8 +73,6 @@ modules:
         filename: feishu.deb
         size: 291752144
 
-      - type: file
-        path: vulcan-launcher.sh
       - type: file
         path: cn.feishu.feishu.svg
       - type: file
