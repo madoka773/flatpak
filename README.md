@@ -1,4 +1,4 @@
-# How To Build
+# How To
 
 ## Install Flatpak Builder
 
@@ -19,3 +19,15 @@
 ## Install
 
 `flatpak --user install local <app-id>`
+
+## Update
+
+`flatpak update`
+
+## Remove
+
+`flatpak remove <app-id> -y`
+
+## Remove Repo
+
+`flatpak remote-delete local -y`
