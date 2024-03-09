@@ -13,6 +13,7 @@ finish-args:
   - --socket=pulseaudio
   - --device=dri
   - --share=network
+  - --talk-name=org.freedesktop.Notifications
   - --talk-name=org.kde.StatusNotifierWatcher
   - --persist=xwechat_files
   - --filesystem=xdg-download
