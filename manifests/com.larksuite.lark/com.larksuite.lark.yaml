@@ -23,6 +23,7 @@ finish-args:
   - --talk-name=org.freedesktop.secrets
   - --talk-name=org.kde.kwin.Screenshot
   - --talk-name=org.kde.KWin.ScreenShot2
+  - --own-name=org.kde.*
 cleanup:
   - '*.a'
   - '*.la'
