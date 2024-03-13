@@ -139,9 +139,9 @@ modules:
       - mkdir -p /app/lib/ffmpeg
     sources:
       - type: file
-        url: https://github.com/xiaoyaocz/dart_simple_live/releases/download/v1.4.9/simple_live_app-1.4.9%2B10409-linux.deb
+        url: https://github.com/xiaoyaocz/dart_simple_live/releases/download/v1.5.2/simple_live_app-1.5.2%2B10502-linux.deb
         dest-filename: simple_live_app.deb
-        sha256: 1493bdf472512deb221e64e769a90030532528aa927270817d54fd1afb31edef
+        sha256: c2e772c5091965a066599554fa3ad7276fb5ebd855721b6ef6cf953afe3c41cc
 
       - type: file
         url: https://raw.githubusercontent.com/xiaoyaocz/dart_simple_live/desktop/simple_live_app/assets/images/logo.png
