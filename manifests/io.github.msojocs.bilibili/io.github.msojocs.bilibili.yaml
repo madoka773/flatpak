@@ -55,14 +55,14 @@ modules:
         dest-filename: bilibili.deb
         only-arches:
           - aarch64
-        url: https://github.com/msojocs/bilibili-linux/releases/download/v1.13.0-2/io.github.msojocs.bilibili_1.13.0-2_arm64.deb
-        sha256: 779c0e60c75377bf3decf5219b1b77827509359d05fb4a4e5fbf4db76ae207d6
+        url: https://github.com/msojocs/bilibili-linux/releases/download/v1.13.4-1/io.github.msojocs.bilibili_1.13.4-1_arm64.deb
+        sha256: 1699cacc16aa86839303e2fd01ad4148be3682e29e9044ed94d7d8907fdd3664
       - type: file
         dest-filename: bilibili.deb
         only-arches:
           - x86_64
-        url: https://github.com/msojocs/bilibili-linux/releases/download/v1.13.0-2/io.github.msojocs.bilibili_1.13.0-2_amd64.deb
-        sha256: b2f4c3f18641163d0af7fde08288e21fef1c311902c47aff8474c2db834bdad1
+        url: https://github.com/msojocs/bilibili-linux/releases/download/v1.13.4-1/io.github.msojocs.bilibili_1.13.4-1_amd64.deb
+        sha256: ce7570f17f9c8a9ab4f978660f5cc33c5d7ec9b0b4514418bc2083509c49580d
       - type: file
         path: io.github.msojocs.bilibili.metainfo.xml
       - type: script
