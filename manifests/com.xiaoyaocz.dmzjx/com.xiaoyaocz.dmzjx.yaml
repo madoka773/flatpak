@@ -36,9 +36,9 @@ modules:
       - install -Dm644 com.xiaoyaocz.dmzjx.metainfo.xml -t /app/share/metainfo
     sources:
       - type: file
-        url: https://github.com/xiaoyaocz/flutter_dmzj/releases/download/v2.0.9/flutter_dmzj-2.0.9%2B20009-linux.deb
+        url: https://github.com/xiaoyaocz/flutter_dmzj/releases/download/v2.1.0%2B4/flutter_dmzj-2.1.0+20100-linux.deb
         dest-filename: flutter_dmzj.deb
-        sha256: 2dc3cffbc3fb1839f7d2a02cde3d3a11a99df1c6dfed4035410382f257cf151a
+        sha256: db0a854fbf967873321d52b0c287ca20e8683ce977fc0b2ed0dcd362c118205d
 
       - type: file
         path: com.xiaoyaocz.dmzjx.metainfo.xml
