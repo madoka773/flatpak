@@ -32,9 +32,9 @@ modules:
       - install -Dm644 top.jtmonster.jhentai.metainfo.xml -t /app/share/metainfo
     sources:
       - type: file
-        url: https://github.com/jiangtian616/JHenTai/releases/download/v7.5.3+212/JHenTai-7.5.3+212-Linux-amd64.deb
+        url: https://github.com/jiangtian616/JHenTai/releases/download/v7.5.4/JHenTai-7.5.4-Linux-amd64.deb
         dest-filename: jhentai.deb
-        sha256: 21e9f03c0dfc3cc64ae7d7d94abdf2e3ffc3d6beb9267930b555ceb8e599eb29
+        sha256: e28584d55469d3d5be0b23d44002df27885c149f0c84235a3717f77612a95a15
       - type: file
         path: top.jtmonster.jhentai.metainfo.xml
       - type: script
