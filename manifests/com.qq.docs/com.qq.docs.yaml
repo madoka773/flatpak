@@ -47,14 +47,14 @@ modules:
         dest-filename: docs.deb
         only-arches:
           - aarch64
-        url: https://desktop.docs.qq.com/Installer/30001/3.5.1/TencentDocs-arm64.deb
-        sha256: 25c7e1d59cb4f98d6cb4a94aaf54dcebed735ffc34c25d78d793032c78a7e372
+        url: https://desktop.docs.qq.com/Installer/30001/3.5.3/TencentDocs-arm64.deb
+        sha256: c10c5a33816cd7f4b0848a03adb3667885d25ba5b2b6efdcba6543266b00fac2
       - type: file
         dest-filename: docs.deb
         only-arches:
           - x86_64
-        url: https://desktop.docs.qq.com/Installer/30001/3.5.1/TencentDocs-x64.deb
-        sha256: 626c548f6d35505203c768fa81368035cf75eeabf60cca427381555d0509b910
+        url: https://desktop.docs.qq.com/Installer/30001/3.5.3/TencentDocs-x64.deb
+        sha256: 078ef22b4f5eedf0ee42dc82e67dfdc39bdd0db41b0843ed51d046accf40e283
       - type: file
         path: com.qq.docs.metainfo.xml
       - type: script
