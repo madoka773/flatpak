@@ -20,6 +20,7 @@ cleanup:
   - /share/man
   - /share/gtk-doc
 modules:
+  - webkit2gtk4.0.yaml
   - name: jhentai
     buildsystem: simple
     build-options:
