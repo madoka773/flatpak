@@ -1,7 +1,7 @@
 app-id: top.jtmonster.jhentai
-runtime: org.gnome.Platform
-runtime-version: '46'
-sdk: org.gnome.Sdk
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
 command: jhentai
 finish-args:
   - '--share=ipc'
@@ -25,16 +25,16 @@ modules:
     build-options:
       no-debuginfo: true
     build-commands:
-      - bsdtar --to-stdout -xf jhentai.deb data.* | bsdtar -xf -
+      - bsdtar --to-stdout -xf *.deb data.* | bsdtar -xf -
       - mv usr/share /app/
       - mv opt/jhentai /app/
       - install -Dm755 jhentai.sh /app/bin/jhentai
       - install -Dm644 top.jtmonster.jhentai.metainfo.xml -t /app/share/metainfo
     sources:
-      - type: file
-        url: https://github.com/jiangtian616/JHenTai/releases/download/v7.5.5/JHenTai-7.5.5%2B223-Linux-amd64.deb
-        dest-filename: jhentai.deb
-        sha256: 4b2bc47592a7edb8f9684d280c1efc038bc692c6f685a866a2d958062a7f20b8
+      - type: archive
+        url: https://nightly.link/jiangtian616/JHenTai/workflows/build_publish/3.19.x-linux/release-Linux.zip
+        dest-filename: jhentai.zip
+        sha256: 2cbe6f2a94a373c591e51d3c5244b85b7323b794a5e4109c797f8588f3ed74be
       - type: file
         path: top.jtmonster.jhentai.metainfo.xml
       - type: script

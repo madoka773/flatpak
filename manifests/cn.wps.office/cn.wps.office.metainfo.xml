@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>cn.wps.Office</id>
+  <id>cn.wps.office</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>LicenseRef-proprietary=http://wps-community.org/license.md</project_license>
   <name>WPS Office (Chinese Edition)</name>
@@ -23,7 +23,7 @@
   <url type="translate">https://github.com/wps-community/wps_i18n</url>
   <developer_name>Kingsoft Office Corporation</developer_name>
   <update_contact>wps_linux_at_kingsoft.com</update_contact>
-  ​<launchable type="desktop-id">cn.wps.Office.desktop</launchable>
+  ​<launchable type="desktop-id">cn.wps.office.desktop</launchable>
   <categories>
     <category>Office</category>
   </categories>

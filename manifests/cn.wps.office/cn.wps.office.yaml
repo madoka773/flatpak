@@ -1,4 +1,4 @@
-id: cn.wps.Office
+id: cn.wps.office
 runtime: org.freedesktop.Platform
 runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
@@ -22,7 +22,7 @@ finish-args:
   - --filesystem=/media
   - --env=QT_PLUGIN_PATH=/app/lib/qt/plugins:/app/extra/wps-office/office6/qt/plugins
 add-extensions:
-  cn.wps.Office.spellcheck:
+  cn.wps.office.spellcheck:
     directory: extra/wps-office/office6/dicts/spellcheck
     subdirectories: true
     no-autodownload: true
@@ -32,8 +32,12 @@ cleanup:
   - '*.a'
   - '*.la'
   - /include
-  - /lib/pkgconfig
   - /lib/cmake
+  - /lib/debug
+  - /lib/pkgconfig
+  - /man
+  - /share/man
+  - /share/gtk-doc
 modules:
   - shared-modules/gtk2/gtk2.json
 
@@ -49,7 +53,7 @@ modules:
         url: https://download.osgeo.org/libtiff/tiff-4.4.0.tar.gz
         sha256: 917223b37538959aca3b790d2d73aa6e626b688e02dcda272aec24c2f498abed
 
-  # https://github.com/flathub/cn.wps.Office/issues/150
+  # https://github.com/flathub/cn.wps.office/issues/150
   - name: freetype
     buildsystem: meson
     sources:
@@ -70,16 +74,16 @@ modules:
       - install -Dm755 /usr/bin/ar -t /app/bin/
       - install -Dm755 /usr/lib/x86_64-linux-gnu/libsframe.so* -t /app/lib/
       - install -Dm755 /usr/lib/$(gcc -print-multiarch)/libbfd-*.so -t /app/lib/
-      - install -Dm644 cn.wps.Office.desktop -t /app/share/applications
+      - install -Dm644 cn.wps.office.desktop -t /app/share/applications
       - for icon_size in 64 128 256 512; do install -Dm644 wps_office_${icon_size}.png
-        /app/share/icons/hicolor/${icon_size}x${icon_size}/apps/cn.wps.Office.png;
+        /app/share/icons/hicolor/${icon_size}x${icon_size}/apps/cn.wps.office.png;
         done
     sources:
       - type: file
         path: apply_extra.sh
 
       - type: file
-        path: cn.wps.Office.metainfo.xml
+        path: cn.wps.office.metainfo.xml
 
       - type: file
         path: wps.sh
@@ -97,7 +101,7 @@ modules:
         path: icons/wps_office_512.png
 
       - type: file
-        path: cn.wps.Office.desktop
+        path: cn.wps.office.desktop
 
       - type: extra-data
         filename: wps-office.deb

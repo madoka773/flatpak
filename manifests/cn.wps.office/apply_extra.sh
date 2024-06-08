@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 shopt -s failglob
-FLATPAK_ID="${FLATPAK_ID:-cn.wps.Office}"
+FLATPAK_ID="${FLATPAK_ID:-cn.wps.office}"
 
 mkdir -p deb-package export/share
 
