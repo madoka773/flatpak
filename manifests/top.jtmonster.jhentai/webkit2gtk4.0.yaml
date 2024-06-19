@@ -6,6 +6,8 @@
 
 name: webkit2gtk-4.0
 buildsystem: cmake-ninja
+build-options:
+  no-debuginfo: true
 config-opts:
   - -DCMAKE_BUILD_TYPE=RelWithDebInfo
   - -DPORT=GTK
@@ -34,8 +36,9 @@ sources:
       - sed -i '/PATH_SUFFIXES avif/d' Source/cmake/FindAVIF.cmake
       - sed -i 's@${AVIF_INCLUDE_DIR}/avif.h@${AVIF_INCLUDE_DIR}/avif/avif.h@' Source/cmake/FindAVIF.cmake
 modules:
+
   - shared-modules/libsoup/libsoup-2.4.json
-  
+
   - name: unifdef
     no-autogen: true
     make-install-args:
